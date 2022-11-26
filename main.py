@@ -1,20 +1,28 @@
 #Import tkinter library
 from tkinter import *
 from tkinter import ttk
-
+from langdetect import detect
+from langcodes import *
 
 def detecteLangue(textValue):
     """
         Détection de la langue
     """
-    return 'todo'
+    codeLangue = detect(textValue)
+    langue = Language.make(language=codeLangue).display_name()
+    return langue
 
 def get_value():
     """
         Récupération de du texte et affichage du résultat
     """
+    #récupération du texte
     textValue=text.get("1.0",END)
+
+    #détection de la langue
     langueDetection = detecteLangue(textValue)
+    
+    #affichage de la langue
     detection.delete(1.0, END)
     detection.insert(END, langueDetection)
 
